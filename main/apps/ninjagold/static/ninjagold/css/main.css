@@ -1,0 +1,14 @@
+wrapper{
+    padding: 10px;
+    margin: 0 auto;
+}
+.option{
+    display: inline-block;
+    width: 200px;
+}
+.win{
+    color: green
+}
+.lose{
+    color: red
+}

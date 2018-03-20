@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ninjagold/css/main.css'  %}" media="screen">
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+            <form action="/ninjagold/process_money" method="post">
+                <span>Your Gold:</span><input type="text" name="goldcounter" value = {{request.session.gold}}>
+            </form>
+        </header>
+        <div class="goldproducers">
+            <div class="option">
+                <h4>Farm</h4>
+                <p>(earns 10-20 golds)</p>
+                <form action="/ninjagold/farm" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="option">
+                <h4>Cave</h4>
+                <p>(earns 5-10 golds)</p>
+                <form action="/ninjagold/cave" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="option">
+                <h4>House</h4>
+                <p>(earns 2-5 golds)</p>
+                <form action="/ninjagold/house" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+            <div class="option">
+                <h4>Casino</h4>
+                <p>(earns/takes 0-50 golds)</p>
+                <form action="/ninjagold/casino" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Find Gold!">
+                </form>
+            </div>
+        </div>
+        <h6>Activities:</h6>
+        {% for object in request.session.log %}
+        <p class={{object.result}}> {{object.intro}} {{object.gold}} golds {{object.middle}} {{object.date}}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
