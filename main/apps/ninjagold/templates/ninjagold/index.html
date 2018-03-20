@@ -50,7 +50,7 @@
             </div>
         </div>
         <h6>Activities:</h6>
-        {% for object in request.session.log %}
+        {% for object in request.session.log reversed %}
         <p class={{object.result}}> {{object.intro}} {{object.gold}} golds {{object.middle}} {{object.date}}</p>
         {% endfor %}
     </div>
